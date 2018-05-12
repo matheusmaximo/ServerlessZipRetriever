@@ -92,7 +92,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/ServerlessZipRetriever/dev/1526156280823-2018-05-12T20:18:00.823Z/bin/release/netcoreapp2.0/deploy-package.zip"
+          "S3Key": "serverless/ServerlessZipRetriever/dev/1526164407776-2018-05-12T22:33:27.776Z/bin/release/netcoreapp2.0/deploy-package.zip"
         },
         "FunctionName": "ServerlessZipRetriever-dev-hello",
         "Handler": "ServerlessZipRetriever::ServerlessZipRetriever.ZipRetriever::Handler",
@@ -104,21 +104,28 @@
           ]
         },
         "Runtime": "dotnetcore2.0",
-        "Timeout": 6
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "ConnectionString": "mongodb://matheus:Passw0rd!@ds016118.mlab.com:16118/globalzips",
+            "DatabaseName": "globalzips",
+            "CollectionName": "usazips"
+          }
+        }
       },
       "DependsOn": [
         "HelloLogGroup",
         "IamRoleLambdaExecution"
       ]
     },
-    "HelloLambdaVersionvY0SWHW6FbZkryGQEej0HwBbnRmXjSjIT6P7ECFQ43Y": {
+    "HelloLambdaVersionMTaWpQ8MP6x7OwN4ujm8oCj25WDgdSVQi7onyDvB7E": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "HelloLambdaFunction"
         },
-        "CodeSha256": "f4sf7IKrL/53Z7gdS7Kt01T2C6GOYGv0Voc7p/ddTO4="
+        "CodeSha256": "zqWLlFZ0533pqXHx/fLkVwAgu/MM+4iPSLia9uTSZSE="
       }
     }
   },
@@ -131,7 +138,7 @@
     "HelloLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "HelloLambdaVersionvY0SWHW6FbZkryGQEej0HwBbnRmXjSjIT6P7ECFQ43Y"
+        "Ref": "HelloLambdaVersionMTaWpQ8MP6x7OwN4ujm8oCj25WDgdSVQi7onyDvB7E"
       }
     }
   }

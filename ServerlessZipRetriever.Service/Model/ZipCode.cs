@@ -3,7 +3,7 @@
 namespace ServerlessZipRetriever.Model
 {
     [BsonIgnoreExtraElements]
-    public class Zip
+    public class ZipCode
     {
         [BsonId]
         public string Id { get; set; }

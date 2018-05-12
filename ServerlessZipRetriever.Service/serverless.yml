@@ -55,6 +55,10 @@ package:
 functions:
   hello:
     handler: ServerlessZipRetriever::ServerlessZipRetriever.ZipRetriever::Handler
+    environment:
+      ConnectionString: ${opt:connectionString}
+      DatabaseName: ${opt:databaseName}
+      CollectionName: ${opt:collectionName}
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

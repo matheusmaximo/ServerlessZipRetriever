@@ -1,0 +1,185 @@
+{
+  "service": {
+    "service": "ServerlessZipRetriever",
+    "serviceObject": {
+      "name": "ServerlessZipRetriever"
+    },
+    "provider": {
+      "stage": "dev",
+      "region": "us-east-1",
+      "variableSyntax": "\\${([ ~:a-zA-Z0-9._'\",\\-\\/\\(\\)]+?)}",
+      "name": "aws",
+      "runtime": "dotnetcore2.0",
+      "versionFunctions": true,
+      "remoteFunctionData": null,
+      "compiledCloudFormationTemplate": {
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Description": "The AWS CloudFormation template for this Serverless application",
+        "Resources": {
+          "ServerlessDeploymentBucket": {
+            "Type": "AWS::S3::Bucket"
+          },
+          "HelloLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/ServerlessZipRetriever-dev-hello"
+            }
+          },
+          "IamRoleLambdaExecution": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Version": "2012-10-17",
+                "Statement": [
+                  {
+                    "Effect": "Allow",
+                    "Principal": {
+                      "Service": [
+                        "lambda.amazonaws.com"
+                      ]
+                    },
+                    "Action": [
+                      "sts:AssumeRole"
+                    ]
+                  }
+                ]
+              },
+              "Policies": [
+                {
+                  "PolicyName": {
+                    "Fn::Join": [
+                      "-",
+                      [
+                        "dev",
+                        "ServerlessZipRetriever",
+                        "lambda"
+                      ]
+                    ]
+                  },
+                  "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                      {
+                        "Effect": "Allow",
+                        "Action": [
+                          "logs:CreateLogStream"
+                        ],
+                        "Resource": [
+                          {
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/ServerlessZipRetriever-dev-hello:*"
+                          }
+                        ]
+                      },
+                      {
+                        "Effect": "Allow",
+                        "Action": [
+                          "logs:PutLogEvents"
+                        ],
+                        "Resource": [
+                          {
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/ServerlessZipRetriever-dev-hello:*:*"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ],
+              "Path": "/",
+              "RoleName": {
+                "Fn::Join": [
+                  "-",
+                  [
+                    "ServerlessZipRetriever",
+                    "dev",
+                    "us-east-1",
+                    "lambdaRole"
+                  ]
+                ]
+              }
+            }
+          },
+          "HelloLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/ServerlessZipRetriever/dev/1526150006859-2018-05-12T18:33:26.859Z/bin/release/netcoreapp2.0/deploy-package.zip"
+              },
+              "FunctionName": "ServerlessZipRetriever-dev-hello",
+              "Handler": "ServerlessZipRetriever::ServerlessZipRetriever.ZipRetriever::Handler",
+              "MemorySize": 1024,
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              },
+              "Runtime": "dotnetcore2.0",
+              "Timeout": 6
+            },
+            "DependsOn": [
+              "HelloLogGroup",
+              "IamRoleLambdaExecution"
+            ]
+          },
+          "HelloLambdaVersion9XAaxJPUvc8gEVZigKVVKonWrCULAjNPmmkItsg": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "HelloLambdaFunction"
+              },
+              "CodeSha256": "HkAvUKfq6FwQeoT2fLm3lYbLgsPKUkON8rhyDLYffk0="
+            }
+          }
+        },
+        "Outputs": {
+          "ServerlessDeploymentBucketName": {
+            "Value": {
+              "Ref": "ServerlessDeploymentBucket"
+            }
+          },
+          "HelloLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "HelloLambdaVersion9XAaxJPUvc8gEVZigKVVKonWrCULAjNPmmkItsg"
+            }
+          }
+        }
+      },
+      "coreCloudFormationTemplate": {
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Description": "The AWS CloudFormation template for this Serverless application",
+        "Resources": {
+          "ServerlessDeploymentBucket": {
+            "Type": "AWS::S3::Bucket"
+          }
+        },
+        "Outputs": {
+          "ServerlessDeploymentBucketName": {
+            "Value": {
+              "Ref": "ServerlessDeploymentBucket"
+            }
+          }
+        }
+      },
+      "vpc": {}
+    },
+    "functions": {
+      "hello": {
+        "handler": "ServerlessZipRetriever::ServerlessZipRetriever.ZipRetriever::Handler",
+        "events": [],
+        "name": "ServerlessZipRetriever-dev-hello",
+        "package": {},
+        "vpc": {}
+      }
+    }
+  },
+  "package": {
+    "artifactDirectoryName": "serverless/ServerlessZipRetriever/dev/1526150006859-2018-05-12T18:33:26.859Z",
+    "artifact": "bin/release/netcoreapp2.0/deploy-package.zip"
+  }
+}

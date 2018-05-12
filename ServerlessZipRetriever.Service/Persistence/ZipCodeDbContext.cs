@@ -9,11 +9,6 @@ namespace ServerlessZipRetriever.Persistence
     public class ZipCodeDbContext
     {
         /// <summary>
-        /// ZipCode collection, see [<see cref="IMongoCollection<ZipCode>"/>]
-        /// </summary>
-        public IMongoCollection<ZipCode> ZipCodeCollection { get; }
-
-        /// <summary>
         /// Initializes a new instance of the ZipCodeDbContext class.
         /// </summary>
         /// <param name="connectionData">Required data do connect database</param>
@@ -22,11 +17,23 @@ namespace ServerlessZipRetriever.Persistence
             // Get database connection
             client = new MongoClient(connectionData.ConnectionString);
             database = client.GetDatabase(connectionData.DatabaseName);
-            ZipCodeCollection = database.GetCollection<ZipCode>(connectionData.CollectionName);
+            collectionName = connectionData.CollectionName;
+        }
+        
+        /// <summary>
+        /// ZipCode collection, see [<see cref="IMongoCollection<ZipCode>"/>]
+        /// </summary>
+        public IMongoCollection<ZipCode> ZipCodeCollection
+        {
+            get
+            {
+                return database.GetCollection<ZipCode>(collectionName);
+            }
         }
 
         private readonly MongoClient client;
         private readonly IMongoDatabase database;
+        private readonly string collectionName;
     }
 
     /// <summary>

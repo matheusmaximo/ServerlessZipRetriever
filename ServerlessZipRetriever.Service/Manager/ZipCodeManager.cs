@@ -1,7 +1,5 @@
 ﻿using MongoDB.Driver;
-using ServerlessZipRetriever.Model;
 using ServerlessZipRetriever.Persistence;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ServerlessZipRetriever.Manager
@@ -31,10 +29,7 @@ namespace ServerlessZipRetriever.Manager
         public async Task<string> GetZip(string state, string city)
         {
             // Query data
-            FindOptions<ZipCode> options = new FindOptions<ZipCode> { Limit = 1 };
-            var task = await dbContext.ZipCodeCollection.FindAsync(e => e.City == city && e.State == state, options);
-            var list = await task.ToListAsync();
-            var zip = list.FirstOrDefault();
+            var zip = await dbContext.ZipCodeCollection.Find(e => e.City == city && e.State == state).FirstOrDefaultAsync();
 
             return zip?.Id;
         }

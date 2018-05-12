@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: ServerlessZipRetriever.Service # NOTE: update this with your service name
+service: ServerlessZipRetriever # NOTE: update this with your service name
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -54,7 +54,7 @@ package:
 
 functions:
   hello:
-    handler: ServerlessZipRetriever::ServerlessZipRetriever.Service.ZipRetriever::Handler
+    handler: ServerlessZipRetriever::ServerlessZipRetriever.ZipRetriever::Handler
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

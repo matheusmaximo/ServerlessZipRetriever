@@ -92,7 +92,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/ServerlessZipRetriever/dev/1526150006859-2018-05-12T18:33:26.859Z/bin/release/netcoreapp2.0/deploy-package.zip"
+          "S3Key": "serverless/ServerlessZipRetriever/dev/1526156280823-2018-05-12T20:18:00.823Z/bin/release/netcoreapp2.0/deploy-package.zip"
         },
         "FunctionName": "ServerlessZipRetriever-dev-hello",
         "Handler": "ServerlessZipRetriever::ServerlessZipRetriever.ZipRetriever::Handler",
@@ -111,14 +111,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "HelloLambdaVersion9XAaxJPUvc8gEVZigKVVKonWrCULAjNPmmkItsg": {
+    "HelloLambdaVersionvY0SWHW6FbZkryGQEej0HwBbnRmXjSjIT6P7ECFQ43Y": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "HelloLambdaFunction"
         },
-        "CodeSha256": "HkAvUKfq6FwQeoT2fLm3lYbLgsPKUkON8rhyDLYffk0="
+        "CodeSha256": "f4sf7IKrL/53Z7gdS7Kt01T2C6GOYGv0Voc7p/ddTO4="
       }
     }
   },
@@ -131,7 +131,7 @@
     "HelloLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "HelloLambdaVersion9XAaxJPUvc8gEVZigKVVKonWrCULAjNPmmkItsg"
+        "Ref": "HelloLambdaVersionvY0SWHW6FbZkryGQEej0HwBbnRmXjSjIT6P7ECFQ43Y"
       }
     }
   }

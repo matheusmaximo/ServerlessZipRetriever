@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerlessZipRetriever.Service", ".\ServerlessZipRetriever.Service\ServerlessZipRetriever.Service.csproj", "{539F0BDF-8888-4617-9C99-3AFAA38D1476}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerlessZipRetriever", "ServerlessZipRetriever.Service\ServerlessZipRetriever.csproj", "{539F0BDF-8888-4617-9C99-3AFAA38D1476}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerlessZipRetriever.Service.Tests", ".\ServerlessZipRetriever.Service.Tests\ServerlessZipRetriever.Service.Tests.csproj", "{68D4E376-D03A-47A6-A818-029504BC46C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerlessZipRetriever.Tests", "ServerlessZipRetriever.Service.Tests\ServerlessZipRetriever.Tests.csproj", "{68D4E376-D03A-47A6-A818-029504BC46C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

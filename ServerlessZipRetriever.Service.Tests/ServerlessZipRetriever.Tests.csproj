@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ServerlessZipRetriever.Service\ServerlessZipRetriever.Service.csproj" />
+    <ProjectReference Include="..\ServerlessZipRetriever.Service\ServerlessZipRetriever.csproj" />
   </ItemGroup>
 
 </Project>

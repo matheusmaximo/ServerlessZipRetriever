@@ -5,12 +5,12 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 
 using Amazon.Lambda.Core;
-using MongoDB.Bson.Serialization.Attributes;
+using ServerlessZipRetriever.Model;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
 
-namespace ServerlessZipRetriever.Service
+namespace ServerlessZipRetriever
 {
     public class ZipRetriever
     {
@@ -31,7 +31,7 @@ namespace ServerlessZipRetriever.Service
             // Get database connection
             var client = new MongoClient(connectionString);
             var database = client.GetDatabase(databaseName);
-            var collectionUsaZips = database.GetCollection<Usazips>(collectionName);
+            var collection = database.GetCollection<Zip>(collectionName);
 
             // Query data
             var city = input.City;
@@ -40,7 +40,7 @@ namespace ServerlessZipRetriever.Service
                 { "city", city},
                 { "state", state},
             });
-            var usazip = collectionUsaZips.Find(filter).FirstOrDefault();
+            var usazip = collection.Find(filter).FirstOrDefault();
 
             // Return
             return usazip.Id;
@@ -57,18 +57,5 @@ namespace ServerlessZipRetriever.Service
             City = city;
             State = state;
         }
-    }
-
-    [BsonIgnoreExtraElements]
-    public class Usazips
-    {
-        [BsonId]
-        public string Id { get; set; }
-
-        [BsonElement("city")]
-        public string City { get; set; }
-
-        [BsonElement("state")]
-        public string State { get; set; }
     }
 }
